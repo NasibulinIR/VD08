@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quotes Generator</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .quote-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .quote-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #2c3e50;
+            font-style: italic;
+        }
+        .author-text {
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        .category-badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        .btn-gradient {
+            background: midnightblue;
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            background-color: rgba(2, 2, 210, 0.64);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(1, 28, 164, 0.78);
+            color: white;
+        }
+        .header-title {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .quote-icon {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="d-flex align-items-center">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <!-- Header -->
+                <div class="text-center mb-5">
+                    <h1 class="header-title display-5 fw-bold mb-3">
+                        <i class="fas fa-quote-left me-3"></i>
+                        Random Quotes Generator
+                        <i class="fas fa-quote-right ms-3"></i>
+                    </h1>
+                    <p class="lead text-white">Discover inspiring quotes from famous people</p>
+                </div>
+
+                <!-- Quote Card -->
+                <div class="quote-card p-4 p-md-5 mb-4">
+                    {% if quote %}
+                    <div class="text-center">
+                        <i class="fas fa-quote-left quote-icon"></i>
+
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <blockquote class="quote-text mb-4">
+                            "{{ quote.quote }}"
+                        </blockquote>
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <div class="author-section">
+                                <p class="author-text mb-0">
+                                    <i class="fas fa-user me-2"></i>
+                                    <strong>{{ quote.author }}</strong>
+                                </p>
+                            </div>
+                            <div class="category-section">
+                                <span class="badge category-badge rounded-pill px-3 py-2">
+                                    <i class="fas fa-tag me-1"></i>
+                                    {{ quote.category }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <i class="fas fa-comment-slash fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">No quote available</h4>
+                        <p class="text-muted">Click the button below to get your first random quote!</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Button -->
+                <div class="text-center">
+                    <form method="get">
+                        <button type="submit" class="btn btn-gradient btn-lg">
+                            <i class="fas fa-random me-2"></i>
+                            Get Random Quote
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Footer -->
+                <div class="text-center mt-4">
+                    <p class="text-white-50">
+                        <small>Powered by API-Ninjas Quotes API</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
